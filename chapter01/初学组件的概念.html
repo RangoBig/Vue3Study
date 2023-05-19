@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- 
+    初学组件的概念:vue绑定标签中的属性,
+    需要注意组件使用的顺序,最后挂载
+     -->
+</head>
+<body>
+    <div class="root"></div>
+
+    <script>
+        const app= Vue.createApp({
+            data() {
+                return {
+                    list1:[],
+                    inputValue: ''
+                }
+            },
+            methods: {
+                hdbth(){
+                    // console.log(this.inputValue);
+                    this.list1.push(this.inputValue);
+                    this.inputValue='';
+                }
+            },
+            template: `
+            <div>
+                <input v-model="inputValue" />
+                <button v-on:click="hdbth" v-bind:title="inputValue">增加</button>
+                <ul>
+                    <todo-item v-for="(item,index) of list">
+                </ul>
+            </div>
+            `
+        });
+        // 注册一个组件
+        app.component('todo-item',{
+            template: `<div>hello world!</div>`
+        });
+        app.mount(".root");
+    </script>
+</body>
+</html>

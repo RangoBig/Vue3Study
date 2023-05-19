@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>使用vue输出hello world</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- 
+        this.data其实就是this.$data.content的简写
+        以前我们是面向dom编程,现在是面向数据去编程,以为有vue替我们去生成dom结点了
+     -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+        // 创建一个vue实例,我要在哪一个区块上使用vue?
+        // 让它作用于root这个元素,template的意思是root结点需要展示的内容
+        // 在vue实例里面放数据,可以绑定到模板里面
+          Vue.createApp({
+            data() {
+                return {
+                    content:1
+                }
+            },
+            // mounted()函数,表示页面加载完成之后,才会执行,结合它的特性,我们可以写一个定时器
+            mounted(){
+                // console.log('mounted表示页面加载完成之后,自动执行');
+                setInterval(() =>{
+                     this.content+=1;
+                },1000)
+                
+            },
+            template: `<div>{{content}}</div>`
+        }).mount('#root');
+    </script>
+  </body>
+</html>

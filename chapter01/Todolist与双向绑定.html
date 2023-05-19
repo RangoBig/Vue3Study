@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- 
+        vue是面向数据的编程,所有我们把一组数据使用li标签给展示出来,这里涉及到了
+        循环展示
+        v-model的意思是会和data里面的数据内容进行绑定 
+     -->
+</head>
+<body>
+    <div class="root"></div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    list1:[],
+                    inputValue: ''
+                }
+            },
+            methods: {
+                hdbth(){
+                    // console.log(this.inputValue);
+                    this.list1.push(this.inputValue);
+                    this.inputValue='';
+                }
+            },
+            template: `
+            <div>
+                <input v-model="inputValue" />
+                <button v-on:click="hdbth">增加</button>
+                <ul>
+                    <li v-for="(item,index) of list1">{{item}},下标-{{index}}</li>
+                </ul>
+            </div>
+            `
+        }).mount(".root");
+    </script>
+</body>
+</html>

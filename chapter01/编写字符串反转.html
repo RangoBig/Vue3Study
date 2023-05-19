@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>使用vue输出hello world</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- 
+        编写一个字符串反转的
+     -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // 创建一个vue实例,我要在哪一个区块上使用vue?
+      // 让它作用于root这个元素,template的意思是root结点需要展示的内容
+      // 在vue实例里面放数据,可以绑定到模板里面
+      Vue.createApp({
+        data() {
+          return {
+            content: "hello world",
+          };
+        }, 
+        methods: {
+        hdclick() {
+            // 	把字符串分割为子字符串数组,聚合起来,生成一个新的数组
+            const newContent = this.content.split("").reverse().join("");
+            this.content = newContent;
+        }   
+    },
+// 希望能够达到的一个效果是点击字符串,进行反转,如果在vue给一个元素绑定事件,需要调用一个指令
+        template: `<div>
+                {{content}}
+                <button v-on:click="hdclick">反转按钮</button>
+                </div>`,
+
+      }).mount("#root");
+    //   在vue中定义的函数写在哪里
+    
+    </script>
+  </body>
+</html>
